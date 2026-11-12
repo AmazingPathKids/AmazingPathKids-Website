@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<a href="#main" style="position:absolute;left:16px;top:-80px;z-index:100;background:#224257;color:#fff;padding:14px 20px;border-radius:12px;font-weight:600;text-decoration:none" style-focus="top:16px">Skip to content</a>
+<header ref="{{ headerRef }}" onFocus="{{ showNav }}" style="position:fixed;top:22px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 24px;pointer-events:none;view-transition-name:site-nav;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s">
+  <div style="pointer-events:auto;width:100%;max-width:1040px;border-radius:20px;background:var(--glass);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid var(--glass-edge);box-shadow:inset 0 1px 0 var(--glass-hi),inset 0 -10px 24px -18px rgba(115,187,163,.5),0 14px 36px -18px rgba(20,43,59,.35),0 2px 6px -2px rgba(20,43,59,.06)">
+    <div style="height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 8px 0 14px">
+      <a href="/" aria-label="Amazing Path Kids, home" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);min-height:48px;padding-right:6px">
+        <img src="/assets/apk-logo.png" alt="" width="34" height="34" style="width:34px;height:34px">
+        <span style="font-size:18px;font-weight:700;letter-spacing:-.02em;white-space:nowrap">Amazing Path Kids</span>
+      </a>
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <nav aria-label="Main" onMouseLeave="{{ blobOut }}" style="position:relative;display:flex;align-items:center;gap:2px">
+          <span ref="{{ blobRef }}" aria-hidden="true" style="position:absolute;left:0;top:0;height:48px;width:80px;border-radius:12px;background:var(--blob);box-shadow:inset 0 1px 0 var(--glass-hi);opacity:0;transition:transform .5s cubic-bezier(.3,1.35,.5,1),width .5s cubic-bezier(.3,1.35,.5,1),opacity .25s"></span>
+          <a href="/how-it-works" aria-current="{{ curHow }}" onMouseEnter="{{ blobIn }}" onFocus="{{ blobIn }}" style="position:relative;color:var(--ink);text-decoration:none;font-size:15px;font-weight:{{ wHow }};min-height:48px;display:flex;align-items:center;padding:0 16px;border-radius:12px">How it works</a>
+          <a href="/about" aria-current="{{ curAbout }}" onMouseEnter="{{ blobIn }}" onFocus="{{ blobIn }}" style="position:relative;color:var(--ink);text-decoration:none;font-size:15px;font-weight:{{ wAbout }};min-height:48px;display:flex;align-items:center;padding:0 16px;border-radius:12px">About</a>
+          <a href="/contact" aria-current="{{ curContact }}" onMouseEnter="{{ blobIn }}" onFocus="{{ blobIn }}" style="position:relative;color:var(--ink);text-decoration:none;font-size:15px;font-weight:{{ wContact }};min-height:48px;display:flex;align-items:center;padding:0 16px;border-radius:12px">Contact</a>
+        </nav>
+        <a href="mailto:founder@amazingpathkids.com?subject=UpPrism%20launch%20updates" style="display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:12px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-size:15px;font-weight:600;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 20px -8px rgba(34,66,87,.6);transition:transform .25s cubic-bezier(.2,.8,.2,1)" style-active="transform:scale(.96)">Get launch updates</a>
+      </sc-if>
+      <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpenStr }}" aria-controls="mobile-nav" style="min-width:48px;min-height:48px;padding:0 20px;border-radius:12px;border:0;background:var(--blob);color:var(--ink);font:600 15px 'Figtree',system-ui,sans-serif;cursor:pointer">{{ menuLabel }}</button>
+      </sc-if>
+    </div>
+    <sc-if value="{{ showMobileNav }}" hint-placeholder-val="{{ false }}">
+      <nav id="mobile-nav" aria-label="Main" style="display:flex;flex-direction:column;padding:4px 22px 18px">
+        <a href="/how-it-works" style="color:var(--ink);text-decoration:none;font-size:24px;font-weight:600;letter-spacing:-.02em;padding:14px 0;border-top:1px solid var(--line)">How UpPrism works</a>
+        <a href="/about" style="color:var(--ink);text-decoration:none;font-size:24px;font-weight:600;letter-spacing:-.02em;padding:14px 0;border-top:1px solid var(--line)">About</a>
+        <a href="/contact" style="color:var(--ink);text-decoration:none;font-size:24px;font-weight:600;letter-spacing:-.02em;padding:14px 0;border-top:1px solid var(--line)">Contact and support</a>
+        <a href="mailto:founder@amazingpathkids.com?subject=UpPrism%20launch%20updates" style="margin-top:8px;display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:12px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-size:16px;font-weight:600">Get launch updates</a>
+      </nav>
+    </sc-if>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;current&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;how&quot;,&quot;about&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+// Shared floating nav. Also runs page-wide reveal-on-scroll for [data-reveal] elements.
+class Component extends DCLogic {
+  state = { narrow: false, menuOpen: false };
+  headerRef = React.createRef();
+  blobRef = React.createRef();
+  lastY = 0;
+
+  componentDidMount() {
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onResize = () => this.setState({ narrow: window.innerWidth < 900 });
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = null; this.autoHideNav(); }); };
+    this.onAnchor = e => { const a = e.target.closest && e.target.closest('a[href^="#"]'); if (a) { this.navLock = Date.now() + 1200; this.setNav(true); } };
+    this.onHash = () => { this.navLock = Date.now() + 1200; this.setNav(true); };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    document.addEventListener('click', this.onAnchor, true);
+    window.addEventListener('hashchange', this.onHash);
+    this.onResize();
+    setTimeout(() => this.setupReveal(), 60);
+    // Browsers without cross-document view transitions get a short fade-out before leaving the page.
+    if (!('onpagereveal' in window) && !this.reduced) {
+      this.onLeave = e => {
+        const a = e.target.closest && e.target.closest('a[href]');
+        if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank') return;
+        const url = new URL(a.href, location.href);
+        if (url.origin !== location.origin || (url.pathname === location.pathname && url.hash) || /^(mailto|tel):/.test(a.getAttribute('href'))) return;
+        e.preventDefault();
+        const m = document.getElementById('main');
+        if (m) { m.style.transition = 'opacity .22s ease, transform .22s ease'; m.style.opacity = '0'; m.style.transform = 'translateY(-8px)'; }
+        setTimeout(() => { location.href = a.href; }, 220);
+      };
+      this.onShow = e => { if (e.persisted) { const m = document.getElementById('main'); if (m) { m.style.opacity = ''; m.style.transform = ''; } } };
+      document.addEventListener('click', this.onLeave);
+      window.addEventListener('pageshow', this.onShow);
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    document.removeEventListener('click', this.onAnchor, true);
+    window.removeEventListener('hashchange', this.onHash);
+    this.io && this.io.disconnect();
+    if (this.onLeave) { document.removeEventListener('click', this.onLeave); window.removeEventListener('pageshow', this.onShow); }
+  }
+
+  // Hides while reading downward; returns on upward scroll, near the top, after in-page jumps, or on focus.
+  autoHideNav() {
+    const y = window.scrollY, dy = y - this.lastY;
+    if (Date.now() < (this.navLock || 0)) { this.setNav(true); this.lastY = y; return; }
+    if (y < 140 || this.state.menuOpen) this.setNav(true);
+    else if (dy > 6) this.setNav(false);
+    else if (dy < -6) this.setNav(true);
+    if (Math.abs(dy) > 6 || y < 140) this.lastY = y;
+  }
+  setNav(show) {
+    const h = this.headerRef.current; if (!h || this.navShown === show) return;
+    this.navShown = show;
+    h.style.transform = show ? 'none' : 'translateY(calc(-100% - 30px))';
+    h.style.opacity = show ? '1' : '0';
+  }
+
+  setupReveal() {
+    if (this.reduced || !('IntersectionObserver' in window)) return;
+    const els = [...document.querySelectorAll('[data-reveal]')];
+    els.forEach(el => {
+      const d = Number(el.getAttribute('data-reveal')) || 0;
+      el.style.opacity = '0';
+      el.style.translate = '0 18px';
+      el.style.transition = `opacity .8s cubic-bezier(.2,.7,.2,1) ${d * 90}ms, translate .9s cubic-bezier(.2,.7,.2,1) ${d * 90}ms`;
+    });
+    this.io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.translate = '0 0'; this.io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach(el => this.io.observe(el));
+  }
+
+  renderVals() {
+    const { narrow, menuOpen } = this.state;
+    const c = this.props.current || '';
+    const cur = k => (c === k ? 'page' : undefined);
+    const w = k => (c === k ? 700 : 500);
+    return {
+      wide: !narrow, narrow,
+      showMobileNav: narrow && menuOpen,
+      menuOpenStr: menuOpen ? 'true' : 'false',
+      menuLabel: menuOpen ? 'Close' : 'Menu',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      curHow: cur('how'), curAbout: cur('about'), curContact: cur('contact'),
+      wHow: w('how'), wAbout: w('about'), wContact: w('contact'),
+      blobIn: e => { const b = this.blobRef.current; if (!b) return; const t = e.currentTarget; b.style.width = t.offsetWidth + 'px'; b.style.transform = `translateX(${t.offsetLeft}px)`; b.style.opacity = '1'; },
+      blobOut: () => { const b = this.blobRef.current; if (b) b.style.opacity = '0'; },
+      showNav: () => this.setNav(true),
+      headerRef: this.headerRef, blobRef: this.blobRef
+    };
+  }
+}
+</script>
+</body>
+</html>

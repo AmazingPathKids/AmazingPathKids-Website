@@ -3,7 +3,7 @@
 ![Amazing Path Kids: UpPrism](assets/og-image.png)
 
 [![Website](https://img.shields.io/badge/website-amazingpathkids.com-224257)](https://amazingpathkids.com)
-[![Hosted on Vercel](https://img.shields.io/badge/hosted%20on-Vercel-000000?logo=vercel)](https://vercel.com)
+[![Hosted on Render](https://img.shields.io/badge/hosted%20on-Render-000000?logo=render)](https://render.com)
 
 The marketing website for **[amazingpathkids.com](https://amazingpathkids.com)**, home of **UpPrism**: a calm, plain-language app that helps parents of children aged 1 to 5 make sense of what they notice, choose what to work on, and do one useful activity at home.
 
@@ -30,7 +30,7 @@ This is a static website with no build step. Every page is a self-contained HTML
 - Plain HTML and CSS, no framework build or bundler
 - [React 18.3.1](https://react.dev) and Babel Standalone, loaded from unpkg at runtime by `support.js`
 - [Figtree](https://fonts.google.com/specimen/Figtree) from Google Fonts
-- [Vercel](https://vercel.com) for hosting
+- [Render](https://render.com) static site hosting
 
 ## Project structure
 
@@ -50,8 +50,7 @@ This is a static website with no build step. Every page is a self-contained HTML
 ├── favicon.ico
 ├── site.webmanifest        # PWA manifest
 ├── robots.txt
-├── sitemap.xml
-└── vercel.json             # Vercel config (clean URLs)
+└── sitemap.xml
 ```
 
 ## Running locally
@@ -66,7 +65,29 @@ Then open <http://localhost:3000>. `serve` supports clean URLs, so `/about` reso
 
 ## Deployment
 
-The site is deployed to **Vercel**. `vercel.json` enables clean URLs (`/about` instead of `/about.html`) and removes trailing slashes.
+The site is deployed as a **Render static site** at [amazingpathkids.com](https://amazingpathkids.com). There is no build step.
+
+- **Build command:** leave empty
+- **Publish directory:** `.` (the repository root)
+- **Auto-deploy:** pushes to `main` redeploy the site
+
+### Clean URLs
+
+Pages link to clean URLs such as `/about`. If Render does not resolve these to their `.html` files, add these rules under **Redirects/Rewrites** in the Render dashboard, each as type **Rewrite**:
+
+| Source          | Destination          |
+| --------------- | -------------------- |
+| `/how-it-works` | `/how-it-works.html` |
+| `/about`        | `/about.html`        |
+| `/contact`      | `/contact.html`      |
+| `/privacy`      | `/privacy.html`      |
+| `/terms`        | `/terms.html`        |
+
+Render serves `404.html` for unknown paths.
+
+### Custom domain
+
+`amazingpathkids.com` is attached under **Settings → Custom Domains**. Render provisions the TLS certificate.
 
 ## Development notes
 
